@@ -1,0 +1,136 @@
+\documentclass[10pt]{beamer}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{unicode=true}
+\usepackage{fontawesome}
+\usepackage{graphicx}
+\usepackage[english,russian]{babel}
+
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+\usepackage{PTSans} 
+\mode<presentation>
+{
+  \usetheme[progressbar=foot,numbering=fraction,background=light]{metropolis} 
+  \usecolortheme{default}
+  \usefonttheme{default}
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\let\textttorig\texttt
+\renewcommand<>{\texttt}[1]{%
+  \only#2{\textttorig{#1}}%
+}
+
+\usepackage{minted}
+
+\usepackage{xcolor}
+\definecolor{codecolor}{HTML}{FFC300}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{most,listingsutf8,minted}
+
+\tcbset{tcbox width=auto,left=1mm,top=1mm,bottom=1mm,
+right=1mm,boxsep=1mm,middle=1pt}
+
+\newtcblisting{myr}[1]{colback=codecolor!5,colframe=codecolor!80!black,listing only, 
+minted options={numbers=left, style=tcblatex,fontsize=\tiny,breaklines,autogobble,linenos,numbersep=3mm},
+left=5mm,enhanced,
+title=#1, fonttitle=\bfseries,
+listing engine=minted,minted language=r}
+
+\definecolor{mygreen}{HTML}{37980D}
+\definecolor{myblue}{HTML}{0D089F}
+\definecolor{myred}{HTML}{98290D}
+
+\usepackage{listings}
+
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  morecomment=[s]{<!--}{-->},
+  morestring=[s]{>}{<},
+  morekeywords={ref,xmlns,version,type,canonicalRef,metr,real,target}
+}
+
+\lstdefinestyle{myxml}{
+language=XML,
+showspaces=false,
+showtabs=false,
+basicstyle=\ttfamily,
+columns=fullflexible,
+breaklines=true,
+showstringspaces=false,
+breakatwhitespace=true,
+escapeinside={(*@}{@*)},
+basicstyle=\color{mygreen}\ttfamily,
+stringstyle=\color{myred},
+commentstyle=\color{myblue}\upshape,
+keywordstyle=\color{myblue}\bfseries,
+}
+
+
+% ------------------------------------------------------------------------------
+% The Document
+% ------------------------------------------------------------------------------
+\title{Разработка приложения <<Magic piano>>}
+\subtitle{Отчет о проектной работе по курсу <<Основы информатики и программирования>>}
+\author{Топчий Евгений Дмитриевич}
+\date{09 июня 2021}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}[fragile]{Введение}
+В наше время существует множество различных игр, как компьютерных, так и мобильных, нацеленых на так назывемое <<Убийство времени>>.Я решил реализовать собственную игру такого типа, главная задача в которой набрать как можно больше очков.
+\end{frame}
+
+\begin{frame}{Требования к приложению}
+Основные требования от данного приложения с точки зрения пользователя: \\
+--Понятное и удобное управление \\
+--Приятный дизайн \\
+--Комфортная игра
+\end{frame}
+
+\begin{frame}{Проектирование приложения}
+Модули приложения:
+\begin{enumerate}
+    \item main.cpp - главный модуль для работы с функциями, реализованными на языке <<C++>>.
+    \item helper.cpp - модуль, в котором реализованы функции, связанные со счётчиком.
+    \item Gameplay.qml - модуль, в котором реализован геймплей данного приложения.
+    \item Info.qml - модуль, содержащий в себе информацию об управлении в реализуемой игре.
+    \item Toolbar.qml - модуль, содержащий в себе кнопки <<Новая игра>>, <<Выйти>>, а так же содержащий в себе счетчик очков и счетчик комбо.
+    \item main.qml - главный модуль графического интерфейса.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]{Реализация приложения}
+Для реализации были использованы языки <<C++>> и <<QML>>\\
+Количество строк кода, написанных на <<C++>> - 60 \\
+Количество строк кода, написанных на <<QML>> - 339 \\
+Количество модулей - 6
+\end{frame}
+
+\begin{frame}[fragile]{Скриншоты игры}
+\begin{figure}
+\includegraphics[width=0.4\textwidth]{gamemoment.jpg}
+\includegraphics[width=0.4\textwidth]{defeat.jpg}
+\caption{Слева - игровой момент, справа - пример поражения}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Заключение}
+В результате работы над проектом было реализовано приложение, реализующее игру <<Magic piano>>, цель которой - набрать как можно больше очков.\\
+\\
+   В результате данной работы был получен опыт работы с библиотеками <<C++>>, а так же опыт работы с <<QtQuick>>.
+\end{frame}
+
+\begin{frame}[standout]
+    Спасибо за внимание ~\alert{!}~
+\end{frame}
+
+\end{document}
